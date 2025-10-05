@@ -58,11 +58,12 @@ public class CheckoutSolutionTest {
 
     @Test
     public void compute_EE_checkout() {
-        assertThat( checkoutSolution.checkout("E"), equalTo(80));
+        assertThat( checkoutSolution.checkout("EE"), equalTo(80));
     }
 
     @Test
     public void compute_EEE_checkout() {
-        assertThat( checkoutSolution.checkout("E"), equalTo(80));
+        assertThat( checkoutSolution.checkout("EEE"), equalTo(80));
     }
 }
+

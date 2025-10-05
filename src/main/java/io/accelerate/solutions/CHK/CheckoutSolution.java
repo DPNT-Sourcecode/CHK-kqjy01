@@ -53,9 +53,11 @@ public class CheckoutSolution {
                 checkOutValue = checkOutValue + (15 * currentSkus.getValue());
                 break;
             case 'E':
-                checkOutValue = checkOutValue + ((currentSkus.getValue() / 3) * 80) + (currentSkus.getValue() % 3 * 40);
+                checkOutValue = checkOutValue + ((currentSkus.getValue() / 3) * 80);
+                checkOutValue = checkOutValue +  ((currentSkus.getValue() % 3) * 40);
                 break;
         }
         return checkOutValue;
     }
 }
+
