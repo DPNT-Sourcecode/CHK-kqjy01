@@ -29,15 +29,10 @@ public class CheckoutSolution {
         for (Map.Entry<Character, Integer> currentSkus: checkOutMap.entrySet()) {
             switch (currentSkus.getKey()){
                 case 'A':
+                    checkOutValue = checkOutValue + ((currentSkus.getValue() / 3) * 130) + (currentSkus.getValue() % 3 * 50);
                     break;
                 case 'B':
-
-                    if (currentSkus.getValue() / 2){
-
-                    }
-
-                    checkOutValue = checkOutValue + (currentSkus.getValue() / 2) *  (currentSkus.getValue() % 2 + (30 * currentSkus.getValue());
-
+                    checkOutValue = checkOutValue + ((currentSkus.getValue() / 2) * 45) + (currentSkus.getValue() % 2 * 30);
                     break;
                 case 'C':
                     checkOutValue = checkOutValue + (20 * currentSkus.getValue());
@@ -49,8 +44,9 @@ public class CheckoutSolution {
             }
         }
 
-        return null;
+        return checkOutValue;
     }
 }
+
 
 
