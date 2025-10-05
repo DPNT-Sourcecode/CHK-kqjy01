@@ -37,6 +37,9 @@ public class CheckoutSolution {
     }
 
     private static int computValue(Map.Entry<Character, Integer> currentSkus, int checkOutValue) {
+
+        int discount;
+
         switch (currentSkus.getKey()){
             case 'A':
                 checkOutValue = checkOutValue + ((currentSkus.getValue() / 5) * 200);
@@ -44,6 +47,12 @@ public class CheckoutSolution {
                 checkOutValue = checkOutValue + ((currentSkus.getValue() % 5) % 3 * 50);
                 break;
             case 'B':
+
+
+
+                checkOutValue = checkOutValue ;
+
+
                 checkOutValue = checkOutValue + ((currentSkus.getValue() / 2) * 45) + (currentSkus.getValue() % 2 * 30);
                 break;
             case 'C':
@@ -53,11 +62,11 @@ public class CheckoutSolution {
                 checkOutValue = checkOutValue + (15 * currentSkus.getValue());
                 break;
             case 'E':
-                checkOutValue = checkOutValue + ((currentSkus.getValue() / 3) * 80);
-                checkOutValue = checkOutValue +  ((currentSkus.getValue() % 3) * 40);
+                checkOutValue = checkOutValue + (40 * currentSkus.getValue());
                 break;
         }
         return checkOutValue;
     }
 }
+
 
