@@ -24,13 +24,27 @@ public class CheckoutSolution {
             checkOutMap.put(currentSku, 1);
         };
 
+        int checkOutValue = 0;
+
         for (Map.Entry<Character, Integer> currentSkus: checkOutMap.entrySet()) {
+            switch (currentSkus.getKey()){
+                case 'A':
+                    break;
+                case 'B':
 
-            if (currentSkus.getKey().equals('A')){
+                    if (){
 
-            }
+                    }
 
-            if (currentSkus.getKey().equals('A')){
+                    checkOutValue = checkOutValue + (currentSkus.getValue() % 2 + (30 * currentSkus.getValue());
+
+                    break;
+                case 'C':
+                    checkOutValue = checkOutValue + (20 * currentSkus.getValue());
+                    break;
+                case 'D':
+                    checkOutValue = checkOutValue + (15 * currentSkus.getValue());
+                    break;
 
             }
         }
@@ -38,3 +52,4 @@ public class CheckoutSolution {
         return null;
     }
 }
+
