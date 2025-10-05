@@ -9,5 +9,3 @@ public class HelloSolution {
         return helloWorld.toString();
     }
 }
-
-
