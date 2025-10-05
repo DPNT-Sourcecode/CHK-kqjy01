@@ -1,8 +1,9 @@
 package io.accelerate.runner;
 
-public class AutOfBoundsException extends RuntimeException {
-    public AutOfBoundsException() {
-        super("Solution not implemented");
+public class OutOfBoundsException extends RuntimeException {
+    public OutOfBoundsException() {
+        super("Value is out of bounds");
     }
 
 }
+
