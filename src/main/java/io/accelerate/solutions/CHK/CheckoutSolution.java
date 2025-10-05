@@ -32,11 +32,11 @@ public class CheckoutSolution {
                     break;
                 case 'B':
 
-                    if (){
+                    if (currentSkus.getValue() / 2){
 
                     }
 
-                    checkOutValue = checkOutValue + (currentSkus.getValue() % 2 + (30 * currentSkus.getValue());
+                    checkOutValue = checkOutValue + (currentSkus.getValue() / 2) *  (currentSkus.getValue() % 2 + (30 * currentSkus.getValue());
 
                     break;
                 case 'C':
@@ -52,4 +52,5 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
