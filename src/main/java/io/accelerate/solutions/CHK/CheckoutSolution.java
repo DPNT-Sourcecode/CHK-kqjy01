@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
-        final boolean containsValidSkus = skus.matches("[ABCD]*");
+        final boolean containsValidSkus = skus.matches("[ABCDE]*");
 
         if(!containsValidSkus)  {
             return -1;
@@ -39,7 +39,9 @@ public class CheckoutSolution {
     private static int computValue(Map.Entry<Character, Integer> currentSkus, int checkOutValue) {
         switch (currentSkus.getKey()){
             case 'A':
-                checkOutValue = checkOutValue + ((currentSkus.getValue() / 3) * 130) + (currentSkus.getValue() % 3 * 50);
+                checkOutValue = checkOutValue + ((currentSkus.getValue() / 5) * 200);
+                checkOutValue = checkOutValue + ((currentSkus.getValue() % 5) / 3 * 130);
+                checkOutValue = checkOutValue + ((currentSkus.getValue() % 5) % 3 * 50);
                 break;
             case 'B':
                 checkOutValue = checkOutValue + ((currentSkus.getValue() / 2) * 45) + (currentSkus.getValue() % 2 * 30);
@@ -50,11 +52,10 @@ public class CheckoutSolution {
             case 'D':
                 checkOutValue = checkOutValue + (15 * currentSkus.getValue());
                 break;
+            case 'E':
+                checkOutValue = checkOutValue + ((currentSkus.getValue() / 3) * 80) + (currentSkus.getValue() % 3 * 40);
+                break;
         }
         return checkOutValue;
     }
 }
-
-
-
-

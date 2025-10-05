@@ -32,8 +32,37 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void compute_AAAAABBBCCD_checkout() {
-        assertThat( checkoutSolution.checkout("AAAAABBBCCD"), equalTo(360));
+    public void compute_AAAABBBCCD_checkout() {
+        assertThat( checkoutSolution.checkout("AAAABBBCCD"), equalTo(310));
+    }
+
+    @Test
+    public void compute_AAAAA_checkout() {
+        assertThat( checkoutSolution.checkout("AAAAA"), equalTo(200));
+    }
+
+    @Test
+    public void compute_AAAAAAAA_checkout() {
+        assertThat( checkoutSolution.checkout("AAAAAAAA"), equalTo(330));
+    }
+
+    @Test
+    public void compute_AAAAAAAAA_checkout() {
+        assertThat( checkoutSolution.checkout("AAAAAAAAA"), equalTo(380));
+    }
+
+    @Test
+    public void compute_E_checkout() {
+        assertThat( checkoutSolution.checkout("E"), equalTo(40));
+    }
+
+    @Test
+    public void compute_EE_checkout() {
+        assertThat( checkoutSolution.checkout("E"), equalTo(80));
+    }
+
+    @Test
+    public void compute_EEE_checkout() {
+        assertThat( checkoutSolution.checkout("E"), equalTo(80));
     }
 }
-
