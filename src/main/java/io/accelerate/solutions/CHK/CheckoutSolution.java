@@ -25,7 +25,12 @@ public class CheckoutSolution {
         };
 
         for (Map.Entry<Character, Integer> currentSkus: checkOutMap.entrySet()) {
-            if (){
+
+            if (currentSkus.getKey().equals('A')){
+
+            }
+
+            if (currentSkus.getKey().equals('A')){
 
             }
         }
@@ -33,7 +38,3 @@ public class CheckoutSolution {
         return null;
     }
 }
-
-
-
-
