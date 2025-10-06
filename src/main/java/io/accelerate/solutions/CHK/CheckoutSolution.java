@@ -152,7 +152,7 @@ public class CheckoutSolution {
         ));
         currentItem = 'S';
         offersToApply.put(currentItem, List.of(
-                new PercentageOffer(currentItem, 1, 30)
+                new PercentageOffer(currentItem, 1, 20)
         ));
         currentItem = 'T';
         offersToApply.put(currentItem, List.of(
@@ -174,15 +174,15 @@ public class CheckoutSolution {
         ));
         currentItem = 'X';
         offersToApply.put(currentItem, List.of(
-                new PercentageOffer(currentItem, 1, 90)
+                new PercentageOffer(currentItem, 1, 17)
         ));
         currentItem = 'Y';
         offersToApply.put(currentItem, List.of(
-                new PercentageOffer(currentItem, 1, 10)
+                new PercentageOffer(currentItem, 1, 20)
         ));
         currentItem = 'Z';
         offersToApply.put(currentItem, List.of(
-                new PercentageOffer(currentItem, 1, 50)
+                new PercentageOffer(currentItem, 1, 21)
         ));
         return offersToApply;
     }
@@ -235,3 +235,4 @@ public class CheckoutSolution {
         return totalAmount;
     }
 }
+
