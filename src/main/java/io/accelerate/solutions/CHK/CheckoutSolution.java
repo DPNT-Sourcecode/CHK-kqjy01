@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
-        final boolean containsValidSkus = skus.matches("[ABCDE]*");
+        final boolean containsValidSkus = skus.matches("[ABCDEF]*");
 
         if(!containsValidSkus)  {
             return -1;
@@ -38,6 +38,13 @@ public class CheckoutSolution {
         if (amountOfFreeBs > 0 && checkOutMap.containsKey('B')) {
             checkOutMap.put('B', checkOutMap.getOrDefault('B',0) - amountOfFreeBs);
         }
+
+        int amountOfFreeFs = checkOutMap.getOrDefault('F',0) / 3;
+
+        if (amountOfFreeBs > 0 && checkOutMap.containsKey('F')) {
+            checkOutMap.put('F', checkOutMap.getOrDefault('F',0) - amountOfFreeFs);
+        }
+
         return checkOutMap;
     }
 
@@ -63,9 +70,13 @@ public class CheckoutSolution {
                 case 'E':
                     checkOutValue = checkOutValue + (40 * currentSkus.getValue());
                     break;
+                case 'F':
+                    checkOutValue = checkOutValue + (10 * currentSkus.getValue());
+                    break;
             }
         }
         return checkOutValue;
     }
 }
+
 
