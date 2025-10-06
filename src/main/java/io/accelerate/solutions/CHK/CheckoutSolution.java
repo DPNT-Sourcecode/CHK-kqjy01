@@ -1,5 +1,8 @@
 package io.accelerate.solutions.CHK;
 
+import io.accelerate.solutions.CHK.offers.FreeItemOffer;
+import io.accelerate.solutions.CHK.offers.Offer;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +16,23 @@ public class CheckoutSolution {
 
         final HashMap<Character, Integer> checkOutMap = getSkuMap(skus);
 
-        final HashMap<Character, Integer> freeItemsToApply = new HashMap<>();
+        final HashMap<Character, Offer> freeItemsToApply = new HashMap<>();
+        char currentItem = 'E';
+        char currentFreeItem = 'B';
+        freeItemsToApply.put(currentItem, new FreeItemOffer(currentItem, 2, currentFreeItem, 1));
+
+        currentItem = 'F';
+        currentFreeItem = 'F';
+        freeItemsToApply.put(currentItem, new FreeItemOffer(currentItem, 3, currentFreeItem, 1));
+        currentItem = 'N';
+        currentFreeItem = 'M';
+        freeItemsToApply.put(currentItem, new FreeItemOffer(currentItem, 3, currentFreeItem, 1));
+        currentItem = 'R';
+        currentFreeItem = 'Q';
+        freeItemsToApply.put(currentItem, new FreeItemOffer(currentItem, 3, currentFreeItem, 1));
+        currentItem = 'U';
+        currentFreeItem = 'U';
+        freeItemsToApply.put(currentItem, new FreeItemOffer(currentItem, 3, currentFreeItem, 1));
 
 
         this.computeFreeItems(checkOutMap);
@@ -81,4 +100,5 @@ public class CheckoutSolution {
         return checkOutValue;
     }
 }
+
 
