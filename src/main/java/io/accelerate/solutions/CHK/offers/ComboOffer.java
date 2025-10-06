@@ -8,28 +8,21 @@ public class ComboOffer implements Offer{
 
     private final String elegibleSkus;
 
-    private final int finalOfferPrice;
+    private final int comboPrice;
 
-    public ComboOffer(char sku, int minQuantity, int finalOfferPrice) {
-        this.sku = sku;
-        this.minQuantity = minQuantity;
-        this.finalOfferPrice = finalOfferPrice;
+    public ComboOffer(int size, String elegibleSkus, int comboPrice) {
+        this.size = size;
+        this.elegibleSkus = elegibleSkus;
+        this.comboPrice = comboPrice;
     }
 
     @Override
     public int apply(Map<Character, Integer> items) {
+        int totalElegibleItems
 
-        int count = items.getOrDefault(sku, 0);
+        for (char sku : elegibleSkus.toCharArray()){
 
-        if (minQuantity > count) {
-            return 0;
         }
-
-        int numberOfOfferToApply = count / minQuantity;
-        int remainingItems = count % minQuantity;
-
-        items.put(sku, remainingItems);
-
-        return numberOfOfferToApply * finalOfferPrice;
     }
 }
+
