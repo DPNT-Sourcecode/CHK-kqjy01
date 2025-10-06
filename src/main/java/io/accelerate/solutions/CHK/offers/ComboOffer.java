@@ -18,11 +18,39 @@ public class ComboOffer implements Offer{
 
     @Override
     public int apply(Map<Character, Integer> items) {
-        int totalElegibleItems
+
+        int totalElegibleItems = 0;
 
         for (char sku : elegibleSkus.toCharArray()){
-
+            totalElegibleItems += items.getOrDefault(sku, 0);
         }
+
+        int comboCount = totalElegibleItems / size;
+
+        if (comboCount == 0) {
+            return 0;
+        }
+
+        int totalComboValue = comboCount * comboPrice;
+        int itemsToRemove = comboCount * size;
+
+        for (char sku : elegibleSkus.toCharArray()) {
+            if (itemsToRemove == 0){
+                return itemsToRemove;
+            }
+
+            int currentItemCount = items.getOrDefault(sku, 0);
+
+            if (currentItemCount == 0){
+                return totalComboValue;
+            }
+
+            int remove = Math.min(currentItemCount, itemsToRemove);
+            items.put(sku, currentItemCount - remove);
+            itemsToRemove -= remove;
+        }
+        return itemsToRemove;
     }
 }
+
 

@@ -91,4 +91,16 @@ public class CheckoutSolutionTest {
         assertThat( checkoutSolution.checkout("FFFF"), equalTo(30));
     }
 
+    @Test
+    public void compute_STX_checkout() {
+        assertThat( checkoutSolution.checkout("STX"), equalTo(45));
+    }
+
+    @Test
+    public void compute_STXY_checkout() {
+        assertThat( checkoutSolution.checkout("STXY"), equalTo(62));
+    }
+
+
 }
+

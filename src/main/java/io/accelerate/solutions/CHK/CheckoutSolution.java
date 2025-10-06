@@ -1,9 +1,11 @@
 package io.accelerate.solutions.CHK;
 
+import io.accelerate.solutions.CHK.offers.ComboOffer;
 import io.accelerate.solutions.CHK.offers.FreeItemOffer;
 import io.accelerate.solutions.CHK.offers.Offer;
 import io.accelerate.solutions.CHK.offers.PercentageOffer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,9 +24,13 @@ public class CheckoutSolution {
 
         final HashMap<Character, List<Offer>> offersToApply = populatePercentageBasedOffers();
 
+        final List<Offer> combosToApply = populateComboOffers();
+
         int total = 0;
 
         total += this.computeFreeItems(checkOutMap,freeItemsToApply);
+
+        total += this.computeComboItems(checkOutMap, combosToApply);
 
         total += this.computeFinalValue(checkOutMap, offersToApply);
 
@@ -51,6 +57,14 @@ public class CheckoutSolution {
         freeItemsToApply.put(currentItem, new FreeItemOffer(currentItem, 4, currentFreeItem, 1));
 
         return freeItemsToApply;
+    }
+
+    private static List<Offer> populateComboOffers() {
+        final List<Offer> comboOffers = new ArrayList<>();
+
+        comboOffers.add(new ComboOffer(3, "ZSTYX", 45));
+
+        return comboOffers;
     }
 
     private static HashMap<Character, List<Offer>> populatePercentageBasedOffers() {
@@ -197,6 +211,16 @@ public class CheckoutSolution {
         return totalAmount;
     }
 
+    private static int computeComboItems(HashMap<Character, Integer> checkOutMap, List<Offer> combos) {
+        int totalAmount = 0;
+
+        for (Offer combo : combos){
+            totalAmount += combo.apply(checkOutMap);
+        }
+
+        return totalAmount;
+    }
+
     private static int computeFinalValue(HashMap<Character, Integer> checkOutMap, HashMap<Character, List<Offer>> percentageBasedOffers) {
         int totalAmount = 0;
 
@@ -211,4 +235,5 @@ public class CheckoutSolution {
         return totalAmount;
     }
 }
+
 
