@@ -44,7 +44,7 @@ public class CheckoutSolution {
         freeItemsToApply.put(currentItem, new FreeItemOffer(currentItem, 3, currentFreeItem, 1));
         currentItem = 'U';
         currentFreeItem = 'U';
-        freeItemsToApply.put(currentItem, new FreeItemOffer(currentItem, 3, currentFreeItem, 1));
+        freeItemsToApply.put(currentItem, new FreeItemOffer(currentItem, 4, currentFreeItem, 1));
 
         return freeItemsToApply;
     }
@@ -206,4 +206,5 @@ public class CheckoutSolution {
         return totalAmount;
     }
 }
+
 
