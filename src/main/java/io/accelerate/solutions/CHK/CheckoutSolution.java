@@ -11,7 +11,10 @@ public class CheckoutSolution {
             return -1;
         }
 
-        final HashMap<Character, Integer> checkOutMap = getSkuMap(skus); ;
+        final HashMap<Character, Integer> checkOutMap = getSkuMap(skus);
+
+        final HashMap<Character, Integer> freeItemsToApply = new HashMap<>();
+
 
         this.computeFreeItems(checkOutMap);
 
@@ -78,3 +81,4 @@ public class CheckoutSolution {
         return checkOutValue;
     }
 }
+
