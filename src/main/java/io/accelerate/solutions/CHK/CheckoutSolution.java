@@ -2,8 +2,10 @@ package io.accelerate.solutions.CHK;
 
 import io.accelerate.solutions.CHK.offers.FreeItemOffer;
 import io.accelerate.solutions.CHK.offers.Offer;
+import io.accelerate.solutions.CHK.offers.PercentageOffer;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CheckoutSolution {
@@ -17,10 +19,10 @@ public class CheckoutSolution {
         final HashMap<Character, Integer> checkOutMap = getSkuMap(skus);
 
         final HashMap<Character, Offer> freeItemsToApply = new HashMap<>();
+
         char currentItem = 'E';
         char currentFreeItem = 'B';
         freeItemsToApply.put(currentItem, new FreeItemOffer(currentItem, 2, currentFreeItem, 1));
-
         currentItem = 'F';
         currentFreeItem = 'F';
         freeItemsToApply.put(currentItem, new FreeItemOffer(currentItem, 3, currentFreeItem, 1));
@@ -33,6 +35,85 @@ public class CheckoutSolution {
         currentItem = 'U';
         currentFreeItem = 'U';
         freeItemsToApply.put(currentItem, new FreeItemOffer(currentItem, 3, currentFreeItem, 1));
+
+        final HashMap<Character, List<Offer>> offersToApply = new HashMap<>();
+
+        currentItem = 'A';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 5, 200),
+                new PercentageOffer(currentItem, 3, 130),
+                new PercentageOffer(currentItem, 1, 50)
+        ));
+        currentItem = 'B';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 2, 45),
+                new PercentageOffer(currentItem, 1, 30)
+        ));
+        currentItem = 'C';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 20)
+        ));
+        currentItem = 'D';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 15)
+        ));
+        currentItem = 'E';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 40)
+        ));
+        currentItem = 'F';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 10)
+        ));
+        currentItem = 'G';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 20)
+        ));
+        currentItem = 'H';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 10, 80),
+                new PercentageOffer(currentItem, 5, 45),
+                new PercentageOffer(currentItem, 1, 10)
+        ));
+        currentItem = 'I';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 35)
+        ));
+        currentItem = 'J';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 60)
+        ));
+        currentItem = 'K';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 2, 150),
+                new PercentageOffer(currentItem, 1, 80)
+        ));
+        currentItem = 'L';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 90)
+        ));
+        currentItem = 'M';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 15)
+        ));
+        currentItem = 'N';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 40)
+        ));
+        currentItem = 'O';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 10)
+        ));
+        currentItem = 'P';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 5, 200),
+                new PercentageOffer(currentItem, 1, 10)
+        ));
+        currentItem = 'Q';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 3, 80),
+                new PercentageOffer(currentItem, 1, 30)
+        ));
 
 
         this.computeFreeItems(checkOutMap);
@@ -100,5 +181,6 @@ public class CheckoutSolution {
         return checkOutValue;
     }
 }
+
 
 
