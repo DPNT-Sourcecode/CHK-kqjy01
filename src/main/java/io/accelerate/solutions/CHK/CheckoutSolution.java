@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
-        final boolean containsValidSkus = skus.matches("[ABCDEF]*");
+        final boolean containsValidSkus = skus.matches("[ABCDEFGHIJKLMNOPQRSTUVWXYZ]*");
 
         if(!containsValidSkus)  {
             return -1;
@@ -18,6 +18,16 @@ public class CheckoutSolution {
 
         final HashMap<Character, Integer> checkOutMap = getSkuMap(skus);
 
+        final HashMap<Character, Offer> freeItemsToApply = populateFreeOffers();
+
+        final HashMap<Character, List<Offer>> offersToApply = populatePercentageBasedOffers();
+
+        this.computeFreeItems(checkOutMap,freeItemsToApply);
+
+        return this.computeFinalValue(checkOutMap, offersToApply);
+    }
+
+    private static HashMap<Character, Offer> populateFreeOffers() {
         final HashMap<Character, Offer> freeItemsToApply = new HashMap<>();
 
         char currentItem = 'E';
@@ -36,8 +46,12 @@ public class CheckoutSolution {
         currentFreeItem = 'U';
         freeItemsToApply.put(currentItem, new FreeItemOffer(currentItem, 3, currentFreeItem, 1));
 
-        final HashMap<Character, List<Offer>> offersToApply = new HashMap<>();
+        return freeItemsToApply;
+    }
 
+    private static HashMap<Character, List<Offer>> populatePercentageBasedOffers() {
+        char currentItem;
+        final HashMap<Character, List<Offer>> offersToApply = new HashMap<>();
         currentItem = 'A';
         offersToApply.put(currentItem, List.of(
                 new PercentageOffer(currentItem, 5, 200),
@@ -107,18 +121,52 @@ public class CheckoutSolution {
         currentItem = 'P';
         offersToApply.put(currentItem, List.of(
                 new PercentageOffer(currentItem, 5, 200),
-                new PercentageOffer(currentItem, 1, 10)
+                new PercentageOffer(currentItem, 1, 50)
         ));
         currentItem = 'Q';
         offersToApply.put(currentItem, List.of(
                 new PercentageOffer(currentItem, 3, 80),
                 new PercentageOffer(currentItem, 1, 30)
         ));
-
-
-        this.computeFreeItems(checkOutMap);
-
-        return this.computeFinalValue(checkOutMap);
+        currentItem = 'R';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 50)
+        ));
+        currentItem = 'S';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 30)
+        ));
+        currentItem = 'T';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 20)
+        ));
+        currentItem = 'U';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 40)
+        ));
+        currentItem = 'V';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 3, 130),
+                new PercentageOffer(currentItem, 2, 90),
+                new PercentageOffer(currentItem, 1, 50)
+        ));
+        currentItem = 'W';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 20)
+        ));
+        currentItem = 'X';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 90)
+        ));
+        currentItem = 'Y';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 10)
+        ));
+        currentItem = '>';
+        offersToApply.put(currentItem, List.of(
+                new PercentageOffer(currentItem, 1, 50)
+        ));
+        return offersToApply;
     }
 
     private static HashMap<Character, Integer> getSkuMap(String skus) {
@@ -135,49 +183,27 @@ public class CheckoutSolution {
         return checkOutMap;
     }
 
-    private static HashMap<Character, Integer> computeFreeItems(HashMap<Character, Integer> checkOutMap) {
-        int amountOfFreeBs = checkOutMap.getOrDefault('E',0) / 2;
+    private static HashMap<Character, Integer> computeFreeItems(HashMap<Character, Integer> checkOutMap, HashMap<Character, Offer> offers) {
 
-        if (amountOfFreeBs > 0 && checkOutMap.containsKey('B')) {
-            checkOutMap.put('B', checkOutMap.getOrDefault('B',0) - amountOfFreeBs);
-        }
-
-        int amountOfFreeFs = checkOutMap.getOrDefault('F',0) / 3;
-
-        if (amountOfFreeFs > 0 && checkOutMap.containsKey('F')) {
-            checkOutMap.put('F', checkOutMap.getOrDefault('F',0) - amountOfFreeFs);
+        for (Offer freeItem : offers.values()){
+            freeItem.apply(checkOutMap);
         }
 
         return checkOutMap;
     }
 
-    private static int computeFinalValue(HashMap<Character, Integer> checkOutMap) {
-        int checkOutValue = 0;
+    private static int computeFinalValue(HashMap<Character, Integer> checkOutMap, HashMap<Character, List<Offer>> percentageBasedOffers) {
+        int totalAmount = 0;
 
-        for (Map.Entry<Character, Integer> currentSkus: checkOutMap.entrySet()) {
-            switch (currentSkus.getKey()) {
-                case 'A':
-                    checkOutValue = checkOutValue + ((currentSkus.getValue() / 5) * 200);
-                    checkOutValue = checkOutValue + ((currentSkus.getValue() % 5) / 3 * 130);
-                    checkOutValue = checkOutValue + ((currentSkus.getValue() % 5) % 3 * 50);
-                    break;
-                case 'B':
-                    checkOutValue = checkOutValue + ((currentSkus.getValue() / 2) * 45) + (currentSkus.getValue() % 2 * 30);
-                    break;
-                case 'C':
-                    checkOutValue = checkOutValue + (20 * currentSkus.getValue());
-                    break;
-                case 'D':
-                    checkOutValue = checkOutValue + (15 * currentSkus.getValue());
-                    break;
-                case 'E':
-                    checkOutValue = checkOutValue + (40 * currentSkus.getValue());
-                    break;
-                case 'F':
-                    checkOutValue = checkOutValue + (10 * currentSkus.getValue());
-                    break;
+        for (Map.Entry<Character, Integer> currentSkus : checkOutMap.entrySet()) {
+
+            if(percentageBasedOffers.containsKey(currentSkus.getKey())) {
+                for (Offer offer: percentageBasedOffers.get(currentSkus.getKey())) {
+                    totalAmount += offer.apply(checkOutMap);
+                }
             }
         }
-        return checkOutValue;
+        return totalAmount;
     }
 }
+
