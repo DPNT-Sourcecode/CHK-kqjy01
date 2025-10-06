@@ -22,9 +22,13 @@ public class CheckoutSolution {
 
         final HashMap<Character, List<Offer>> offersToApply = populatePercentageBasedOffers();
 
-        this.computeFreeItems(checkOutMap,freeItemsToApply);
+        int total = 0;
 
-        return this.computeFinalValue(checkOutMap, offersToApply);
+        total += this.computeFreeItems(checkOutMap,freeItemsToApply);
+
+        total += this.computeFinalValue(checkOutMap, offersToApply);
+
+        return total;
     }
 
     private static HashMap<Character, Offer> populateFreeOffers() {
@@ -183,13 +187,14 @@ public class CheckoutSolution {
         return checkOutMap;
     }
 
-    private static HashMap<Character, Integer> computeFreeItems(HashMap<Character, Integer> checkOutMap, HashMap<Character, Offer> offers) {
+    private static int computeFreeItems(HashMap<Character, Integer> checkOutMap, HashMap<Character, Offer> offers) {
+        int totalAmount = 0;
 
         for (Offer freeItem : offers.values()){
-            freeItem.apply(checkOutMap);
+            totalAmount += freeItem.apply(checkOutMap);
         }
 
-        return checkOutMap;
+        return totalAmount;
     }
 
     private static int computeFinalValue(HashMap<Character, Integer> checkOutMap, HashMap<Character, List<Offer>> percentageBasedOffers) {
@@ -206,3 +211,4 @@ public class CheckoutSolution {
         return totalAmount;
     }
 }
+
