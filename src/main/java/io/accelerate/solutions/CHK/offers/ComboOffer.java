@@ -36,13 +36,13 @@ public class ComboOffer implements Offer{
 
         for (char sku : elegibleSkus.toCharArray()) {
             if (itemsToRemove == 0){
-                return itemsToRemove;
+                return totalComboValue;
             }
 
             int currentItemCount = items.getOrDefault(sku, 0);
 
             if (currentItemCount == 0){
-                return totalComboValue;
+                continue;
             }
 
             int remove = Math.min(currentItemCount, itemsToRemove);
@@ -52,5 +52,6 @@ public class ComboOffer implements Offer{
         return itemsToRemove;
     }
 }
+
 
 
