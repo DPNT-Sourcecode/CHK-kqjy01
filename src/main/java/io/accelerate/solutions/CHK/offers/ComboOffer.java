@@ -49,9 +49,10 @@ public class ComboOffer implements Offer{
             items.put(sku, currentItemCount - remove);
             itemsToRemove -= remove;
         }
-        return itemsToRemove;
+        return totalComboValue;
     }
 }
+
 
 
 
