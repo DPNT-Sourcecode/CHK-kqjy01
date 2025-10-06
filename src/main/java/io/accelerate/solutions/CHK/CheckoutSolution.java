@@ -41,7 +41,7 @@ public class CheckoutSolution {
 
         int amountOfFreeFs = checkOutMap.getOrDefault('F',0) / 3;
 
-        if (amountOfFreeBs > 0 && checkOutMap.containsKey('F')) {
+        if (amountOfFreeFs > 0 && checkOutMap.containsKey('F')) {
             checkOutMap.put('F', checkOutMap.getOrDefault('F',0) - amountOfFreeFs);
         }
 
@@ -78,5 +78,6 @@ public class CheckoutSolution {
         return checkOutValue;
     }
 }
+
 
 

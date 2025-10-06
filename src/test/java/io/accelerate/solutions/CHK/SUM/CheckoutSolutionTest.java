@@ -85,12 +85,13 @@ public class CheckoutSolutionTest {
     public void compute_FFF_checkout() {
         assertThat( checkoutSolution.checkout("FFF"), equalTo(20));
     }
-    
+
     @Test
     public void compute_FFFF_checkout() {
         assertThat( checkoutSolution.checkout("FFFF"), equalTo(30));
     }
 
 }
+
 
 
