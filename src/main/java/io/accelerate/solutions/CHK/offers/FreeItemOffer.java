@@ -21,20 +21,21 @@ public class FreeItemOffer implements Offer {
     }
 
     @Override
-    public int apply(Map<Character, Integer> offers) {
+    public int apply(Map<Character, Integer> items) {
 
-        int mainCount = offers.getOrDefault(mainSku, 0);
+        int mainCount = items.getOrDefault(mainSku, 0);
 
         if (minQuantity > mainCount) {
             return 0;
         }
 
-        int freeItemCount = (minQuantity / mainCount) * freeQuantity;
-        int currentFreeItemCount = offers.getOrDefault(freeSku, 0);
-        offers.put(freeSku,currentFreeItemCount - freeItemCount );
+        int freeItemCount = (mainCount / minQuantity) * freeQuantity;
+        int currentFreeItemCount = items.getOrDefault(freeSku, 0);
+        items.put(freeSku,currentFreeItemCount - freeItemCount );
         return 0;
 
     }
 
 
 }
+

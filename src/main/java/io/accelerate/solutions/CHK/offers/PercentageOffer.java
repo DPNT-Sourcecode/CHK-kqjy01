@@ -17,19 +17,20 @@ public class PercentageOffer implements Offer{
     }
 
     @Override
-    public int apply(Map<Character, Integer> offers) {
+    public int apply(Map<Character, Integer> items) {
 
-        int count = offers.getOrDefault(sku, 0);
+        int count = items.getOrDefault(sku, 0);
 
         if (minQuantity > count) {
             return 0;
         }
 
         int numberOfOfferToApply = count / minQuantity;
-        int remainingItems = count / minQuantity;
+        int remainingItems = count % minQuantity;
 
-        offers.put(sku, remainingItems);
+        items.put(sku, remainingItems);
 
         return numberOfOfferToApply * finalOfferPrice;
     }
 }
+

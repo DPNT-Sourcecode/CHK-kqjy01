@@ -162,7 +162,7 @@ public class CheckoutSolution {
         offersToApply.put(currentItem, List.of(
                 new PercentageOffer(currentItem, 1, 10)
         ));
-        currentItem = 'z';
+        currentItem = 'Z';
         offersToApply.put(currentItem, List.of(
                 new PercentageOffer(currentItem, 1, 50)
         ));
@@ -206,3 +206,4 @@ public class CheckoutSolution {
         return totalAmount;
     }
 }
+
