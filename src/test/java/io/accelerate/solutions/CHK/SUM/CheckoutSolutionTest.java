@@ -63,6 +63,17 @@ public class CheckoutSolutionTest {
 
     @Test
     public void compute_EEE_checkout() {
-        assertThat( checkoutSolution.checkout("EEE"), equalTo(80));
+        assertThat( checkoutSolution.checkout("EEE"), equalTo(120));
+    }
+
+    @Test
+    public void compute_BBEEE_checkout() {
+        assertThat( checkoutSolution.checkout("BBEEE"), equalTo(150));
+    }
+
+    @Test
+    public void compute_BBBEEE_checkout() {
+        assertThat( checkoutSolution.checkout("BBBEEE"), equalTo(165));
     }
 }
+

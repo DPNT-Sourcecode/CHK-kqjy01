@@ -13,13 +13,9 @@ public class CheckoutSolution {
 
         final HashMap<Character, Integer> checkOutMap = getSkuMap(skus); ;
 
-        int checkOutValue = 0;
+        this.computeFreeItems(checkOutMap);
 
-        for (Map.Entry<Character, Integer> currentSkus: checkOutMap.entrySet()) {
-            checkOutValue = computValue(currentSkus, checkOutValue);
-        }
-
-        return checkOutValue;
+        return this.computeFinalValue(checkOutMap);
     }
 
     private static HashMap<Character, Integer> getSkuMap(String skus) {
@@ -36,35 +32,40 @@ public class CheckoutSolution {
         return checkOutMap;
     }
 
-    private static int computValue(Map.Entry<Character, Integer> currentSkus, int checkOutValue) {
+    private static HashMap<Character, Integer> computeFreeItems(HashMap<Character, Integer> checkOutMap) {
+        int amountOfFreeBs = checkOutMap.getOrDefault('E',0) / 2;
 
-        int discount;
+        if (amountOfFreeBs > 0 && checkOutMap.containsKey('B')) {
+            checkOutMap.put('B', checkOutMap.getOrDefault('B',0) - amountOfFreeBs);
+        }
+        return checkOutMap;
+    }
 
-        switch (currentSkus.getKey()){
-            case 'A':
-                checkOutValue = checkOutValue + ((currentSkus.getValue() / 5) * 200);
-                checkOutValue = checkOutValue + ((currentSkus.getValue() % 5) / 3 * 130);
-                checkOutValue = checkOutValue + ((currentSkus.getValue() % 5) % 3 * 50);
-                break;
-            case 'B':
+    private static int computeFinalValue(HashMap<Character, Integer> checkOutMap) {
+        int checkOutValue = 0;
 
-
-
-                checkOutValue = checkOutValue ;
-
-
-                checkOutValue = checkOutValue + ((currentSkus.getValue() / 2) * 45) + (currentSkus.getValue() % 2 * 30);
-                break;
-            case 'C':
-                checkOutValue = checkOutValue + (20 * currentSkus.getValue());
-                break;
-            case 'D':
-                checkOutValue = checkOutValue + (15 * currentSkus.getValue());
-                break;
-            case 'E':
-                checkOutValue = checkOutValue + (40 * currentSkus.getValue());
-                break;
+        for (Map.Entry<Character, Integer> currentSkus: checkOutMap.entrySet()) {
+            switch (currentSkus.getKey()) {
+                case 'A':
+                    checkOutValue = checkOutValue + ((currentSkus.getValue() / 5) * 200);
+                    checkOutValue = checkOutValue + ((currentSkus.getValue() % 5) / 3 * 130);
+                    checkOutValue = checkOutValue + ((currentSkus.getValue() % 5) % 3 * 50);
+                    break;
+                case 'B':
+                    checkOutValue = checkOutValue + ((currentSkus.getValue() / 2) * 45) + (currentSkus.getValue() % 2 * 30);
+                    break;
+                case 'C':
+                    checkOutValue = checkOutValue + (20 * currentSkus.getValue());
+                    break;
+                case 'D':
+                    checkOutValue = checkOutValue + (15 * currentSkus.getValue());
+                    break;
+                case 'E':
+                    checkOutValue = checkOutValue + (40 * currentSkus.getValue());
+                    break;
+            }
         }
         return checkOutValue;
     }
 }
+
